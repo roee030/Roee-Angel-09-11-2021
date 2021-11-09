@@ -5,9 +5,9 @@
     position: relative;
     .searchIcon {
         position: absolute;
-        top: 16px;
+        top: 15px;
         z-index: 1;
-        right: 0;
+        right: 5px;
         cursor: pointer;
         margin-right: 5px;
     }
@@ -19,8 +19,10 @@
     }
 
     .fieldWrapper {
-        @include flex-column-start();
-        align-items: flex-start;
+        position: relative;
+        @include flex-column-center();
+        width: fit-content;
+        margin: auto;
 
         .field {
             height: 20px;

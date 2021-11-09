@@ -20,10 +20,11 @@ const Input = ({
     return (
         <div className={clsx(styles.root, classes.root)}>
             {/* <label className={clsx(styles.label, classes.label)}>{label}</label> */}
-            <div className={styles.searchIcon} onclick={onClick}>
-                <SearchIcon stroke='black' />
-            </div>
+
             <div className={clsx(styles.fieldWrapper, classes.fieldWrapper)}>
+                <div className={styles.searchIcon} onclick={onClick}>
+                    <SearchIcon stroke='black' />
+                </div>
                 <input
                     className={clsx({
                         [styles.field]: true,
