@@ -9,15 +9,28 @@
     align-items: center;
 
     .headerRightSide {
-        padding: 0px 70px;
+        .logo {
+            height: 40px;
+            width: 40px;
+            margin-left: 15px;
+        }
     }
 
     .headerLeftSide {
         display: flex;
         justify-content: space-between;
-        padding: 0px 70px;
     }
     .button {
-        margin: 0px 30px;
+        // @include sizes-mobile {
+        //     margin: 0px 0px;
+        // }
+
+        // @include sizes-tablet {
+        //     margin: 0px 30px;
+        // }
+
+        // @include sizes-desktop {
+        //     margin: 0px 30px;
+        // }
     }
 }

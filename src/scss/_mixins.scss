@@ -22,6 +22,22 @@
     align-items: center;
 }
 
+@mixin children-margin($left: initial, $right: initial, $bottom: initial) {
+    & > :not(:last-child) {
+        margin-left: $left;
+        margin-right: $right;
+        margin-bottom: $bottom;
+    }
+}
+
+@mixin children-margin-left($left) {
+    @include children-margin($left: $left);
+}
+
 @mixin children-margin-right($right) {
     @include children-margin($right: $right);
+}
+
+@mixin children-margin-bottom($bottom) {
+    @include children-margin($bottom: $bottom);
 }
