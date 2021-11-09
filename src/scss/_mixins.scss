@@ -1,0 +1,27 @@
+@import "colors";
+
+@mixin text($fontSize: 12.5px, $color: $whitePrimary, $isBold: false, $isUpper: false) {
+    font-family: Montserrat;
+    font-size: $fontSize;
+    color: $color;
+    letter-spacing: 0.7px;
+
+    @if $isBold {
+        font-weight: 600;
+    }
+
+    @if $isUpper {
+        text-transform: uppercase;
+    }
+}
+
+@mixin flex-row-center() {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin children-margin-right($right) {
+    @include children-margin($right: $right);
+}

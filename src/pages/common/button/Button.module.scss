@@ -1,0 +1,20 @@
+@import "scss/theme";
+
+.root {
+    height: 36px;
+    width: 132px;
+
+    @include flex-row-center();
+    @include children-margin-right(7px);
+    @include text($isBold: true);
+    border: unset;
+    background-color: $lightGreenPrimary;
+    color: $whitePrimary;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        opacity: $button-hover-opacity;
+    }
+}

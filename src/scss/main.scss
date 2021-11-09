@@ -1,0 +1,9 @@
+@import "reset";
+@import "colors";
+
+button {
+    &:hover,
+    &:focus {
+        opacity: $button-hover-opacity;
+    }
+}
