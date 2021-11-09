@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Input.module.scss';
 import PropTypes from 'prop-types';
+import { ReactComponent as SearchIcon } from 'assets/icons/search.svg';
 import clsx from 'clsx';
 
 const Input = ({
@@ -9,6 +10,7 @@ const Input = ({
     hasError,
     name,
     value,
+    onClick,
     onChange,
     classes = {},
     disabled,
@@ -17,7 +19,10 @@ const Input = ({
 }) => {
     return (
         <div className={clsx(styles.root, classes.root)}>
-            <label className={clsx(styles.label, classes.label)}>{label}</label>
+            {/* <label className={clsx(styles.label, classes.label)}>{label}</label> */}
+            <div className={styles.searchIcon} onclick={onClick}>
+                <SearchIcon stroke='black' />
+            </div>
             <div className={clsx(styles.fieldWrapper, classes.fieldWrapper)}>
                 <input
                     className={clsx({
@@ -42,9 +47,9 @@ const Input = ({
 };
 
 Input.propTypes = {
-    name: PropTypes.string.isRequired,
-    value: PropTypes.any.isRequired,
-    label: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    value: PropTypes.any,
+    label: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     errorMessage: PropTypes.string,
     hasError: PropTypes.bool,

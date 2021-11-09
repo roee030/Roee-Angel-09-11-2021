@@ -1,1 +1,53 @@
-@import "../../scss/theme";
+@import "scss/theme";
+
+.root {
+    margin-top: 40px;
+    position: relative;
+    .searchIcon {
+        position: absolute;
+        top: 16px;
+        z-index: 1;
+        right: 0;
+        cursor: pointer;
+        margin-right: 5px;
+    }
+    .label {
+        width: 113px;
+        padding-top: 10px;
+        @include text($isBold: true, $isUpper: true, $color: $blackPrimary);
+        margin-right: 5px;
+    }
+
+    .fieldWrapper {
+        @include flex-column-start();
+        align-items: flex-start;
+
+        .field {
+            height: 20px;
+            width: 261px;
+            border: unset;
+            border-radius: 4px;
+            box-shadow: 0 5px 10px 0 #e0e4ee;
+            background-color: #ffffff;
+
+            @include text($color: $blackPrimary, $isBold: true);
+            padding: 20px;
+
+            &.disabled {
+                color: $whiteSecondary;
+            }
+        }
+
+        .fieldErrorMessage {
+            min-height: 17px;
+            padding-top: 3px;
+            visibility: hidden;
+            @include text($fontSize: 11px, $color: $primaryRed);
+            text-transform: capitalize;
+
+            &.show {
+                visibility: visible;
+            }
+        }
+    }
+}

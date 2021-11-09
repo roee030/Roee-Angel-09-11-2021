@@ -51,16 +51,15 @@ const SettingMenu = () => {
     return (
         <div className={styles.menuRoot}>
             <span>Degree unit:</span>
-
             <Stack direction="row" spacing={1} alignItems="center">
-                <Typography>Off</Typography>
-                <AntSwitch defaultChecked inputProps={{ 'montserrat': 'ant design' }} />
-                <Typography>On</Typography>
+                <Typography>°C</Typography>
+                <AntSwitch onChange={(e) => console.log('change', e.target.checked)} defaultChecked inputProps={{ 'montserrat': 'ant design' }} />
+                <Typography>°F</Typography>
             </Stack>
             <span>Dark Mode:</span>
             <Stack direction="row" spacing={1} alignItems="center">
                 <Typography>Off</Typography>
-                <AntSwitch defaultChecked inputProps={{ 'montserrat': 'ant design' }} />
+                <AntSwitch onChange={(e) => console.log('change', e.target.checked)} defaultChecked inputProps={{ 'montserrat': 'ant design' }} />
                 <Typography>On</Typography>
             </Stack>
         </div>

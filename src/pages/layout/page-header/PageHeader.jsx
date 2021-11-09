@@ -3,7 +3,7 @@ import styles from './PageHeader.module.scss';
 import clsx from 'clsx';
 import Button from 'pages/common/button/Button';
 import useBreakpoints from 'utility/hooks/useBreakpoints';
-import logo from 'assest/icons/herolo_logo.png';
+import logo from 'assets/icons/herolo_logo.png';
 import { useLocation, useHistory } from 'react-router-dom';
 import ROUTES from 'routes';
 import SettingMenu from './SettingMenu';

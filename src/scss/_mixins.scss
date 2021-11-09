@@ -22,6 +22,12 @@
     align-items: center;
 }
 
+@mixin flex-column-center() {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 @mixin children-margin($left: initial, $right: initial, $bottom: initial) {
     & > :not(:last-child) {
         margin-left: $left;
@@ -29,7 +35,15 @@
         margin-bottom: $bottom;
     }
 }
+@mixin flex-column-start() {
+    @include flex-column-center();
+    justify-content: flex-start;
+}
 
+@mixin flex-row-start() {
+    @include flex-row-center();
+    justify-content: flex-start;
+}
 @mixin children-margin-left($left) {
     @include children-margin($left: $left);
 }
