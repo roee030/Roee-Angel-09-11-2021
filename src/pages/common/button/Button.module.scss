@@ -26,8 +26,7 @@
     cursor: pointer;
     margin: 0 10px;
 
-    &:hover,
-    &:focus {
+    &:hover {
         opacity: $button-hover-opacity;
     }
 }
