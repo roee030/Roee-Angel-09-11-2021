@@ -1,47 +1,66 @@
 import React from 'react';
 import styles from './Input.module.scss';
 import PropTypes from 'prop-types';
-import { ReactComponent as SearchIcon } from 'assets/icons/search.svg';
+import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 import clsx from 'clsx';
 
 const Input = ({
-    label,
-    errorMessage,
-    hasError,
-    name,
-    value,
     onClick,
     onChange,
     classes = {},
     disabled,
-    type = 'text',
-    onBlur,
 }) => {
+    const items = [
+        {
+            id: 0,
+            name: 'Cobol'
+        },
+        {
+            id: 1,
+            name: 'JavaScript'
+        },
+        {
+            id: 2,
+            name: 'Basic'
+        },
+        {
+            id: 3,
+            name: 'PHP'
+        },
+        {
+            id: 4,
+            name: 'Java'
+        }
+    ];
+
+    const handleOnSearch = (string, results) => {
+        // onSearch will have as the first callback parameter
+        // the string searched and for the second the results.
+        console.log(string, results);
+    };
+
+
+    const handleOnSelect = (item) => {
+        // the item selected
+        console.log(item);
+    };
+
+
+
+    const formatResult = (item) => {
+        return item;
+    };
     return (
         <div className={clsx(styles.root, classes.root)}>
-            {/* <label className={clsx(styles.label, classes.label)}>{label}</label> */}
+            <div style={{ width: 400 }}>
+                <ReactSearchAutocomplete
+                    items={items}
+                    onSearch={handleOnSearch}
 
-            <div className={clsx(styles.fieldWrapper, classes.fieldWrapper)}>
-                <div className={styles.searchIcon} onclick={onClick}>
-                    <SearchIcon stroke='black' />
-                </div>
-                <input
-                    className={clsx({
-                        [styles.field]: true,
-                        [styles.disabled]: disabled,
-                    }, classes.field)}
-                    type={type}
-                    value={value}
-                    onChange={e => onChange(name, e.target.value)}
-                    disabled={disabled}
-                    onBlur={onBlur}
+                    onSelect={handleOnSelect}
+                    autoFocus
+                    formatResult={formatResult}
                 />
-                <span className={clsx({
-                    [styles.fieldErrorMessage]: true,
-                    [styles.show]: hasError,
-                })}>
-                    {errorMessage}
-                </span>
             </div>
         </div>
     );
@@ -51,7 +70,7 @@ Input.propTypes = {
     name: PropTypes.string,
     value: PropTypes.any,
     label: PropTypes.string,
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
     errorMessage: PropTypes.string,
     hasError: PropTypes.bool,
     disabled: PropTypes.bool,

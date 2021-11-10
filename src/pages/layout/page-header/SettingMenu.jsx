@@ -4,6 +4,8 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import styles from './PageHeader.module.scss';
+import { useDispatch } from 'react-redux';
+import allActions from 'redux/actions';
 
 const AntSwitch = styled(Switch)(({ theme }) => ({
     width: 28,
@@ -46,8 +48,9 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
         boxSizing: 'border-box',
     },
 }));
-
 const SettingMenu = () => {
+    const dispatch = useDispatch();
+
     return (
         <div className={styles.menuRoot}>
             <span>Degree unit:</span>
@@ -59,7 +62,7 @@ const SettingMenu = () => {
             <span>Dark Mode:</span>
             <Stack direction="row" spacing={1} alignItems="center">
                 <Typography>Off</Typography>
-                <AntSwitch onChange={(e) => console.log('change', e.target.checked)} defaultChecked inputProps={{ 'montserrat': 'ant design' }} />
+                <AntSwitch onChange={(e) => dispatch(allActions.themeActions(e.target.checked ? true : false))} defaultChecked inputProps={{ 'montserrat': 'ant design' }} />
                 <Typography>On</Typography>
             </Stack>
         </div>

@@ -3,4 +3,23 @@
 .root {
     border: 1px solid black;
     display: flex;
+    flex-direction: column;
+
+    .dayForcast {
+        display: flex;
+        @include sizes-mobile {
+            flex: 0 0 100%;
+        }
+
+        @include sizes-tablet {
+            flex: 0 0 20%;
+        }
+
+        @include sizes-desktop {
+            flex: 0 0 20%;
+        }
+    }
+}
+.dayForcastRoot {
+    border: 1px solid red;
 }

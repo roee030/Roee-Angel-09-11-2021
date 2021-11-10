@@ -6,9 +6,7 @@ import Forecast from 'pages/layout/Forecast/Forecast';
 const HomePage = () => {
     return (
         <div className={styles.root}>
-            <Input
-                onChange={(e) => console.log(e)}
-            />
+            <Input />
             <Forecast />
         </div>
     );

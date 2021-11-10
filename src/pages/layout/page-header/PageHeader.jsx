@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './PageHeader.module.scss';
 import clsx from 'clsx';
 import Button from 'pages/common/button/Button';
-import useBreakpoints from 'utility/hooks/useBreakpoints';
+import useBreakpoints from 'utils/hooks/useBreakpoints';
 import logo from 'assets/icons/herolo_logo.png';
 import { useLocation, useHistory } from 'react-router-dom';
 import ROUTES from 'routes';
