@@ -1,0 +1,37 @@
+@import "scss/theme";
+
+.menuRoot {
+    border: 1px solid;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+
+    @include sizes-mobile {
+        transform: translate(-35%, 17%);
+        width: 102px;
+        height: 90px;
+    }
+
+    @include sizes-tablet {
+        transform: translate(8%, 17%);
+        width: 102px;
+        height: 90px;
+    }
+
+    @include sizes-desktop {
+        transform: translate(6%, 17%);
+        width: 132px;
+        height: 90px;
+    }
+}
+
+.lightMode {
+    background-color: $bluePrimary;
+    color: $blackPrimary;
+}
+.darkMode {
+    background-color: $blackSecondary;
+    color: $whitePrimary;
+}

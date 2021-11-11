@@ -3,7 +3,7 @@ import Switch from '@mui/material/Switch';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import styles from './PageHeader.module.scss';
+import styles from './SettingMenu.module.scss';
 import { useDispatch } from 'react-redux';
 import allActions from 'redux/actions';
 import { useSelector } from 'react-redux';
