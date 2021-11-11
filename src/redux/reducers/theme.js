@@ -1,14 +1,13 @@
 import { LIGHT_THEME, DARK_THEME } from 'utils/constants/types';
 
-export const theme = (state = { theme: true }, action) => {
-    console.log("🚀 ~ file: theme.js ~ line 13 ~ themeReducer ~ action", action);
+export const theme = (theme = true, action) => {
     switch (action.type) {
         case LIGHT_THEME:
-            return { theme: true };
+            return theme = true;
         case DARK_THEME:
-            return { theme: false };
+            return theme = false;
         default:
-            return state;
+            return theme;
     }
 };
 
