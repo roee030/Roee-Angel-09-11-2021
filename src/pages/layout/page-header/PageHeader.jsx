@@ -25,7 +25,7 @@ const PageHeader = () => {
             <div className={styles.headerRightSide}>
                 {isMobileWidth
                     ? <img className={styles.logo} src={logo} alt={'logo'} />
-                    : 'HEROLO WEATHER APP'}
+                    : <> <img className={styles.logo} src={logo} alt={'logo'} /> HEROLO WEATHER APP</>}
             </div>
             <div className={styles.headerLeftSide}>
                 <Button

@@ -9,6 +9,9 @@
     align-items: center;
 
     .headerRightSide {
+        align-items: center;
+        display: flex;
+
         .logo {
             height: 40px;
             width: 40px;
@@ -22,19 +25,6 @@
     }
     .buttonClicked {
         opacity: $button-hover-opacity;
-    }
-    .button {
-        // @include sizes-mobile {
-        //     margin: 0px 0px;
-        // }
-
-        // @include sizes-tablet {
-        //     margin: 0px 30px;
-        // }
-
-        // @include sizes-desktop {
-        //     margin: 0px 30px;
-        // }
     }
 }
 .lightMode {

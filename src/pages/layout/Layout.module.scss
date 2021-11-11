@@ -1,1 +1,12 @@
 @import "scss/theme";
+
+.lightMode {
+    background-image: url("/assets/backgrounds/light.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.darkMode {
+    background-image: url("/assets/backgrounds/dark.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
