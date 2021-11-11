@@ -6,7 +6,10 @@ import { styled } from '@mui/material/styles';
 import styles from './PageHeader.module.scss';
 import { useDispatch } from 'react-redux';
 import allActions from 'redux/actions';
+import { useSelector } from 'react-redux';
+import clsx from 'clsx';
 
+let themeMode;
 const AntSwitch = styled(Switch)(({ theme }) => ({
     width: 28,
     height: 16,
@@ -27,7 +30,7 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
             color: '#fff',
             '& + .MuiSwitch-track': {
                 opacity: 1,
-                backgroundColor: theme.palette.mode === 'dark' ? '#177ddc' : '#1890ff',
+                backgroundColor: themeMode ? '#111a1a' : '#9b9ea9',
             },
         },
     },
@@ -44,26 +47,35 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
         borderRadius: 16 / 2,
         opacity: 1,
         backgroundColor:
-            theme.palette.mode === 'dark' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.25)',
+            themeMode ? '#111a1a' : '#9b9ea9',
         boxSizing: 'border-box',
     },
 }));
+
 const SettingMenu = () => {
     const dispatch = useDispatch();
+    themeMode = useSelector(state => state.theme);
 
     return (
-        <div className={styles.menuRoot}>
+        <div className={clsx({
+            [styles.lightMode]: themeMode,
+            [styles.darkMode]: !themeMode,
+        }, styles.menuRoot)}>
             <span>Degree unit:</span>
             <Stack direction="row" spacing={1} alignItems="center">
                 <Typography>°C</Typography>
-                <AntSwitch onChange={(e) => console.log('change', e.target.checked)} defaultChecked inputProps={{ 'montserrat': 'ant design' }} />
+                <AntSwitch onChange={(e) => {
+                    dispatch(allActions.degreeActions(e.target.checked));
+                }} defaultChecked inputProps={{ 'montserrat': 'ant design' }} />
                 <Typography>°F</Typography>
             </Stack>
             <span>Dark Mode:</span>
             <Stack direction="row" spacing={1} alignItems="center">
-                <Typography>Off</Typography>
-                <AntSwitch onChange={(e) => dispatch(allActions.themeActions(e.target.checked ? true : false))} defaultChecked inputProps={{ 'montserrat': 'ant design' }} />
                 <Typography>On</Typography>
+                <AntSwitch onChange={(e) => {
+                    dispatch(allActions.themeActions(e.target.checked));
+                }} defaultChecked inputProps={{ 'montserrat': 'ant design' }} />
+                <Typography>Off</Typography>
             </Stack>
         </div>
     );

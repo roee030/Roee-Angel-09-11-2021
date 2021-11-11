@@ -10,7 +10,7 @@ const Forecast = () => {
                 <div>favorite</div>
             </div>
             <div>Title</div>
-            <div className={styles.dayForcast}>
+            <div className={styles.dayForcastRoot}>
                 <DayForcast />
                 <DayForcast />
                 <DayForcast />

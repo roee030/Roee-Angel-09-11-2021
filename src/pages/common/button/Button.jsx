@@ -2,11 +2,17 @@ import React from 'react';
 import styles from './Button.module.scss';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useSelector } from 'react-redux';
 
 const Button = ({ children, onClick, className: classNameFromParent }) => {
+    const themeMode = useSelector(state => state.theme);
+
     return (
         <button
-            className={clsx(styles.root, classNameFromParent)}
+            className={clsx({
+                [styles.lightMode]: themeMode,
+                [styles.darkMode]: !themeMode,
+            }, styles.root)}
             onClick={onClick}
         >
             {children}

@@ -5,6 +5,7 @@ import Button from 'pages/common/button/Button';
 import useBreakpoints from 'utils/hooks/useBreakpoints';
 import logo from 'assets/icons/herolo_logo.png';
 import { useLocation, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import ROUTES from 'routes';
 import SettingMenu from './SettingMenu';
 
@@ -12,11 +13,15 @@ const PageHeader = () => {
     const { isMobileWidth } = useBreakpoints();
     const location = useLocation();
     const history = useHistory();
+    const themeMode = useSelector(state => state.theme);
 
     const [isSettingMenuOpen, setisSettingMenuOpen] = useState(false);
 
     return (
-        <div className={styles.root}>
+        <div className={clsx({
+            [styles.lightMode]: themeMode,
+            [styles.darkMode]: !themeMode,
+        }, styles.root)}>
             <div className={styles.headerRightSide}>
                 {isMobileWidth
                     ? <img className={styles.logo} src={logo} alt={'logo'} />

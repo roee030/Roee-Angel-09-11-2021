@@ -4,6 +4,9 @@
     border: 1px solid black;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    height: 70vh;
+    margin-top: 15px;
 
     .dayForcast {
         display: flex;
@@ -21,5 +24,14 @@
     }
 }
 .dayForcastRoot {
-    border: 1px solid red;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    .dayForcast {
+        border: 1px solid red;
+
+        // padding: 30px;
+        flex: 0 0 18%;
+        flex-wrap: wrap;
+    }
 }

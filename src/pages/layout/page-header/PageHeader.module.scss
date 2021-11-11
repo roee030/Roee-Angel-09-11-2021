@@ -1,11 +1,11 @@
-@import "../../../scss/theme";
+@import "scss/theme";
 
 .root {
     height: 50px;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background-color: red;
+    border-bottom: 2px solid $blackPrimary;
     align-items: center;
 
     .headerRightSide {
@@ -61,4 +61,11 @@
             height: 90px;
         }
     }
+}
+.lightMode {
+    background-color: $bluePrimary;
+}
+.darkMode {
+    background-color: $blackPrimary;
+    color: $whitePrimary;
 }
