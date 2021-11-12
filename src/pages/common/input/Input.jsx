@@ -3,6 +3,7 @@ import styles from './Input.module.scss';
 import PropTypes from 'prop-types';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 import clsx from 'clsx';
+import useBreakpoints from 'utils/hooks/useBreakpoints';
 
 const Input = ({
     onClick,
@@ -32,6 +33,7 @@ const Input = ({
             name: 'Java'
         }
     ];
+    const { isMobileWidth } = useBreakpoints();
 
     const handleOnSearch = (string, results) => {
         // onSearch will have as the first callback parameter
@@ -80,11 +82,10 @@ const Input = ({
     // }
     return (
         <div className={clsx(styles.root, classes.root)}>
-            <div style={{ width: 400 }}>
+            <div style={isMobileWidth ? { width: 250 } : { width: 600 }}>
                 <ReactSearchAutocomplete
                     items={items}
                     onSearch={handleOnSearch}
-
                     onSelect={handleOnSelect}
                     autoFocus
                     formatResult={formatResult}

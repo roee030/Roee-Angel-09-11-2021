@@ -29,39 +29,21 @@ const PageHeader = () => {
             </div>
             <div className={styles.headerLeftSide}>
                 <Button
-                    className={clsx(styles.button,
-                        { [styles.buttonClicked]: location.pathname === ROUTES.HOME }
-                    )}
-                    onClick={() => {
-                        history.push({
-                            pathname: ROUTES.HOME,
-
-                        });
-                    }}
-                >HOME</Button>
+                    className={clsx(styles.button, { [styles.buttonClicked]: location.pathname === ROUTES.HOME })}
+                    onClick={() => { history.push({ pathname: ROUTES.HOME, }); }}>
+                    HOME
+                </Button>
                 <Button
                     className={clsx(styles.button,
-                        { [styles.buttonClicked]: location.pathname === ROUTES.FAVORITE }
-                    )}
-                    onClick={() => {
-                        history.push({
-                            pathname: ROUTES.FAVORITE,
-
-                        });
-                    }}
-                >FAVORITE</Button>
+                        { [styles.buttonClicked]: location.pathname === ROUTES.FAVORITE })}
+                    onClick={() => { history.push({ pathname: ROUTES.FAVORITE, }); }} >
+                    FAVORITE
+                </Button>
                 <div>
-
                     <Button className={clsx(styles.button,
-                        { [styles.buttonClicked]: isSettingMenuOpen }
-                    )}
-                        onClick={() => {
-                            setisSettingMenuOpen(!isSettingMenuOpen);
-                        }}
-                    >
-
+                        { [styles.buttonClicked]: isSettingMenuOpen })}
+                        onClick={() => { setisSettingMenuOpen(!isSettingMenuOpen); }}  >
                         SETTINGS
-
                     </Button>
                     {isSettingMenuOpen && <SettingMenu />}
                 </div>

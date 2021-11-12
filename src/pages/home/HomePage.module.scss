@@ -5,9 +5,14 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    @include sizes-mobile {
+        padding: 0px 20px;
+    }
+    @include sizes-tablet {
+        padding: 0 60px;
+    }
 
-    // .searchInput {
-    //     display: flex;
-    //     justify-content: center;
-    // }
+    @include sizes-desktop {
+        padding: 0 80px;
+    }
 }

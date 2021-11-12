@@ -16,6 +16,7 @@
         width: 132px;
     }
 
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     @include flex-row-center();
     @include children-margin-right(7px);
     @include text($isBold: true);

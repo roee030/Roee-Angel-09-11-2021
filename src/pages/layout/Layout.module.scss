@@ -1,12 +1,11 @@
 @import "scss/theme";
-
+.root {
+    height: 100vh;
+    font-family: "Montserrat";
+}
 .lightMode {
-    background-image: url("/assets/backgrounds/light.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: linear-gradient(to top, #0d6ca0 0%, #7fb1cf 100%);
 }
 .darkMode {
-    background-image: url("/assets/backgrounds/dark.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: linear-gradient(to top, #111a1a 0%, #27304a 100%);
 }
