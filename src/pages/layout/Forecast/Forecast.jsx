@@ -17,7 +17,6 @@ const Forecast = () => {
     const degreeUnits = useSelector(state => state.degree);
     const weatherData = useSelector(state => state.weatherData.selectedData);
     const myFavoriteList = useSelector(state => state.favoriteLocations.ObjectsList);
-    console.log("🚀 ~ file: Forecast.jsx ~ line 21 ~ Forecast ~ myFavoriteList", myFavoriteList);
     const weatherDataPending = useSelector(state => state.weatherData.pending);
     const weatherDataError = useSelector(state => state.weatherData.error);
     const isFavorite = myFavoriteList?.some(location => location.id === weatherData.id);
@@ -41,15 +40,20 @@ const Forecast = () => {
                         <div className={styles.todayForcast}>
                             <div className={styles.location}>{weatherData.LocationName}</div>
                             <div className={styles.todayForcast}>{degreeUnits
-                                ? weatherData.Temperature?.Imperial.Value + "°" + weatherData.Temperature?.Imperial.Unit
-                                : weatherData.Temperature.Metric.Value + "°" + weatherData.Temperature.Metric.Unit}</div>
+                                ? weatherData.Temperature?.Imperial.Value + " °" + weatherData.Temperature?.Imperial.Unit
+                                : weatherData.Temperature.Metric.Value + " °" + weatherData.Temperature.Metric.Unit}</div>
                         </div>
                     </div>
                     <Button className={styles.favorite}
                         onClick={
                             isFavorite
                                 ? () => dispatch(allActions.updateFavoriteWeatherLocations(myFavoriteList.filter(locationObject => locationObject.id !== weatherData.id)))
-                                : () => dispatch(allActions.updateFavoriteWeatherLocations([...myFavoriteList, { id: weatherData.id, LocationName: weatherData.LocationName }]))
+                                : () => dispatch(allActions.updateFavoriteWeatherLocations([...myFavoriteList,
+                                {
+                                    id: weatherData.id, LocationName: weatherData.LocationName, iconId: weatherData.WeatherIcon, WeatherText: weatherData.WeatherText,
+                                    ImperialTemperature: weatherData.Temperature?.Imperial.Value, ImperialTemperatureUnit: weatherData.Temperature.Imperial.Unit,
+                                    MetricTemperature: weatherData.Temperature?.Metric.Value, MetricTemperatureUnit: weatherData.Temperature.Metric.Unit
+                                }]))
                         }
                     >
                         {isFavorite

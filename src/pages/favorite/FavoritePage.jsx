@@ -7,11 +7,10 @@ import FavoriteItem from './FavoriteItem';
 
 const FavoritePage = () => {
     const myFavoriteLocations = useSelector(state => state.favoriteLocations.ObjectsList);
-    // console.log("🚀 ~ file: FavoritePage.jsx ~ line 10 ~ FavoritePage ~ myFavoriteLocations", JSON.parse(localStorage.getItem('favoriteList')));
 
     return (
         <div className={styles.root}>
-            {/* {myFavoriteLocations.map(id => <FavoriteItem locationId={{ id: id }} />)} */}
+            {myFavoriteLocations.map(location => <FavoriteItem location={location} />)}
         </div>
     );
 };
