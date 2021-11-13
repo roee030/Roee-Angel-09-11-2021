@@ -1,39 +1,46 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './Input.module.scss';
-import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 import clsx from 'clsx';
 import useBreakpoints from 'utils/hooks/useBreakpoints';
 import useAlerts from 'utils/hooks/useAlerts';
 import { useDispatch, useSelector } from 'react-redux';
 import allActions from 'redux/actions';
+import UseAutocomplete from '../autoComplete/UseAutoComplete';
 
 const Input = () => {
     const { isMobileWidth } = useBreakpoints();
-    const { inputError } = useAlerts();
+    const { inputError, generalError } = useAlerts();
     const dispatch = useDispatch();
     const results = useSelector((state) => state.searchResults.results);
+    const error = useSelector((state) => state.searchResults.error);
     const newArray = results.map(a => ({ ...a }));
     const handleOnSearch = async (input) => {
+        console.log("🚀 ~ file: Input.jsx ~ line 25 ~ handleOnSearch ~ handleOnSearch", input);
         if (!/^[a-zA-Z  -]*$/.test(input)) {
             inputError();
+            return;
+        }
+        if (input.trim().length === 0) {
             return;
         }
         dispatch(allActions.autoCompleteDataSearch(input));
     };
 
     const handleOnSelect = (location) => {
+        console.log("location");
         dispatch(allActions.getWeatherData(location));
     };
+
+    useEffect(() => {
+        if (error) {
+            generalError(error?.request?.statusText);
+        }
+    }, [error, generalError]);
 
     return (
         <div className={clsx(styles.root)}>
             <div style={isMobileWidth ? { width: 250 } : { width: 600 }}>
-                <ReactSearchAutocomplete
-                    items={newArray}
-                    onSearch={handleOnSearch}
-                    onSelect={handleOnSelect}
-                    autoFocus
-                />
+                <UseAutocomplete items={newArray} handleOnSelect={handleOnSelect} handleSearch={handleOnSearch} />
             </div>
         </div>
     );

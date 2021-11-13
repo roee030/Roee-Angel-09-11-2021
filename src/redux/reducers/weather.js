@@ -16,7 +16,7 @@ export const searchResults = (state = { results: [] }, action) => {
         case AUTOCOMPLETE_SEARCH_LIST_SUCCESS:
             return { ...state, results: action.payload, pending: false, error: null };
         case AUTOCOMPLETE_SEARCH_LIST_PENDING:
-            return { ...state, pending: true };
+            return { ...state, pending: true, error: null };
         case AUTOCOMPLETE_SEARCH_LIST_FAIL:
             return { ...state, pending: false, error: action.payload };
         default:
@@ -52,6 +52,7 @@ export const fiveDaysWeatherData = (state = { fiveDaysWeather: [] }, action) => 
 export const favoriteLocations = (state = { ObjectsList: [] }, action) => {
     switch (action.type) {
         case UPDATE_FAVORITE_LOCATION:
+
             localStorage.setItem('favoriteList', JSON.stringify(action.payload));
             return { ...state, ObjectsList: action.payload };
         default:

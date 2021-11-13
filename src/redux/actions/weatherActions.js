@@ -10,6 +10,7 @@ import {
     FETCH_FIVE_DAYS_DATA_SUCCESS,
     UPDATE_FAVORITE_LOCATION,
 } from 'utils/constants/types';
+
 import { getAutoCompleteCities, getCurrentCondition, getFiveDaysForecast } from 'utils/services/weatherService';
 
 export const autoCompleteDataSearch = (input) => async (dispatch) => {
