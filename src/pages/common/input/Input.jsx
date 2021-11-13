@@ -15,7 +15,6 @@ const Input = () => {
     const error = useSelector((state) => state.searchResults.error);
     const newArray = results.map(a => ({ ...a }));
     const handleOnSearch = async (input) => {
-        console.log("🚀 ~ file: Input.jsx ~ line 25 ~ handleOnSearch ~ handleOnSearch", input);
         if (!/^[a-zA-Z  -]*$/.test(input)) {
             inputError();
             return;
@@ -27,7 +26,6 @@ const Input = () => {
     };
 
     const handleOnSelect = (location) => {
-        console.log("location");
         dispatch(allActions.getWeatherData(location));
     };
 
