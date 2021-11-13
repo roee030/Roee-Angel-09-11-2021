@@ -41,7 +41,6 @@ export const autoCompleteDataSearch = (input) => async (dispatch) => {
 };
 
 export const getWeatherData = (location) => async (dispatch) => {
-    console.log("🚀 ~ file: weatherActions.js ~ line 44 ~ getWeatherData ~ location", location.id);
     dispatch({ type: FETCH_DATA_PENDING });
     try {
         await getCurrentCondition(location.id).then(data => {

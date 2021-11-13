@@ -21,7 +21,6 @@ const Forecast = () => {
     const myWeatherData = useSelector(state => state.myWeatherData.data);
     const isFavorite = myFavoriteList?.some(location => location.id === weatherData.id);
     const [shouldRerender, setShouldRerender] = useState(false);
-    console.log("🚀 ~ file: Forecast.jsx ~ line 18 ~ Forecast ~ weatherData", weatherData);
     useEffect(() => {
         if (navigator.geolocation) {
             (navigator.geolocation.getCurrentPosition((object) => {
@@ -34,7 +33,6 @@ const Forecast = () => {
 
     useEffect(() => {
         if (Object.keys(myWeatherData).length && shouldRerender) {
-            // console.log({ id: myWeatherData.Key, name: myWeatherData.LocalizedName });
             dispatch(allActions.getWeatherData({ id: myWeatherData.Key, name: myWeatherData.LocalizedName }));
         }
     }, [myWeatherData, shouldRerender]);
