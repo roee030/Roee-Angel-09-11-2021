@@ -1,22 +1,24 @@
 import React, { useEffect } from 'react';
-import styles from './FavoritePage.module.scss';
-import { useSelector, useDispatch } from 'react-redux';
-import allActions from 'redux/actions';
+import styles from './FavoriteItem.module.scss';
+import { useSelector } from 'react-redux';
 import WeatherIcon from 'pages/common/weatherIcon/WeatherIcon';
+import clsx from 'clsx';
 
 const FavoriteItem = ({ location }) => {
-    console.log("🚀 ~ file: FavoriteItem.jsx ~ line 7 ~ FavoriteItem ~ location", location);
-    const dispatch = useDispatch();
+    const themeMode = useSelector(state => state.theme);
     const degreeUnits = useSelector(state => state.degree);
 
     return (
-        <div>
-            <div>{location.LocationName}</div>
+        <div className={clsx({
+            [styles.lightMode]: themeMode,
+            [styles.darkMode]: !themeMode,
+        }, styles.dayForcast)}>
+            <div className={styles.name}>{location.LocationName}</div>
             <WeatherIcon iconId={location.iconId} />
-            <div>{degreeUnits
+            <div className={styles.degree}>{degreeUnits
                 ? location.ImperialTemperature + " °" + location.ImperialTemperatureUnit
                 : location.MetricTemperature + " °" + location.MetricTemperatureUnit}</div>
-            <div>Show More</div>
+            <div className={styles.moreDetails}>Show More Details</div>
         </div>
     );
 };
