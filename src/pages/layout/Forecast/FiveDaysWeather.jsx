@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import DayForcast from './DayForcast';
+import DayForecast from './DayForecast';
 import allActions from 'redux/actions';
 import styles from './FiveDaysWeather.module.scss';
 
@@ -16,7 +16,7 @@ const FiveDaysWeather = () => {
     return (
         <div className={styles.root}>
             {fiveDaysWeather ? fiveDaysWeather.map((dayForcast, index) =>
-                <DayForcast key={index} forcast={dayForcast} />
+                <DayForecast key={index} forcast={dayForcast} />
             ) : null}
         </div>
     );

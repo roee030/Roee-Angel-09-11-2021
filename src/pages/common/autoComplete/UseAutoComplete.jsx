@@ -10,7 +10,6 @@ export default function FreeSoloCreateOption({ items, handleSearch, handleOnSele
     };
     const handleSearchList = (e) => {
         handleSearch(e.target.value);
-
     };
     return (
         <Autocomplete
