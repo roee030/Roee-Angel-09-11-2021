@@ -1,6 +1,11 @@
 import theme from './theme';
 import degree from './degree';
-import { searchResults, weatherData, fiveDaysWeatherData } from './weather';
+import {
+    searchResults,
+    weatherData,
+    fiveDaysWeatherData,
+    favoriteLocations
+} from './weather';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -8,7 +13,8 @@ const rootReducer = combineReducers({
     degree,
     searchResults,
     weatherData,
-    fiveDaysWeatherData
+    fiveDaysWeatherData,
+    favoriteLocations
 });
 
 export default rootReducer;

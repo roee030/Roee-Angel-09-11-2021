@@ -1,13 +1,19 @@
 import themeActions from './themeActions';
 import degreeActions from './degreeActions';
-import { autoCompleteDataSearch, getWeatherData, getFiveDaysWeatherData } from './weatherActions';
+import {
+    autoCompleteDataSearch,
+    getWeatherData,
+    getFiveDaysWeatherData,
+    updateFavoriteWeatherLocations
+} from './weatherActions';
 
 const allActions = {
     themeActions,
     degreeActions,
     autoCompleteDataSearch,
     getWeatherData,
-    getFiveDaysWeatherData
+    getFiveDaysWeatherData,
+    updateFavoriteWeatherLocations
 };
 
 export default allActions;

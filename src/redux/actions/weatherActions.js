@@ -8,6 +8,7 @@ import {
     FETCH_FIVE_DAYS_DATA_PENDING,
     FETCH_FIVE_DAYS_DATA_FAIL,
     FETCH_FIVE_DAYS_DATA_SUCCESS,
+    UPDATE_FAVORITE_LOCATION,
 } from 'utils/constants/types';
 import { getAutoCompleteCities, getCurrentCondition, getFiveDaysForecast } from 'utils/services/weatherService';
 
@@ -40,7 +41,6 @@ export const getWeatherData = (location) => async (dispatch) => {
     try {
         await getCurrentCondition(location.id).then(data => {
             const formattedData = { ...data.data[0], LocationName: location.name, id: location.id };
-            formattedData.WeatherIcon = formattedData.WeatherIcon > 9 ? formattedData.WeatherIcon : String("0" + formattedData.WeatherIcon);
             dispatch({
                 type: FETCH_DATA_SUCCESS,
                 payload: formattedData,
@@ -69,4 +69,12 @@ export const getFiveDaysWeatherData = (id) => async (dispatch) => {
             payload: error
         });
     }
+};
+
+export const updateFavoriteWeatherLocations = (newList) => {
+    console.log("🚀 ~ file: weatherActions.js ~ line 75 ~ updateFavoriteWeatherLocations ~ newList", newList);
+    return {
+        type: UPDATE_FAVORITE_LOCATION,
+        payload: newList
+    };
 };

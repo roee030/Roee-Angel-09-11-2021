@@ -12,7 +12,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 
 
-const middleware = applyMiddleware(thunk);
+const middleware = applyMiddleware(logger, thunk);
 const composeEnhancers = composeWithDevTools(middleware);
 
 const store = createStore(

@@ -8,6 +8,7 @@ import {
     FETCH_FIVE_DAYS_DATA_PENDING,
     FETCH_FIVE_DAYS_DATA_SUCCESS,
     FETCH_FIVE_DAYS_DATA_FAIL,
+    UPDATE_FAVORITE_LOCATION,
 } from 'utils/constants/types';
 
 export const searchResults = (state = { results: [] }, action) => {
@@ -43,6 +44,16 @@ export const fiveDaysWeatherData = (state = { fiveDaysWeather: [] }, action) => 
             return { ...state, error: action.payload, pending: false };
         case FETCH_FIVE_DAYS_DATA_PENDING:
             return { ...state, pending: true };
+        default:
+            return state;
+    }
+};
+
+export const favoriteLocations = (state = { idList: [] }, action) => {
+    console.log(action.payload);
+    switch (action.type) {
+        case UPDATE_FAVORITE_LOCATION:
+            return { ...state, idList: action.payload };
         default:
             return state;
     }

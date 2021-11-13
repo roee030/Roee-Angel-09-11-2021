@@ -10,7 +10,6 @@ const FiveDaysWeather = () => {
     const weatherData = useSelector(state => state.weatherData.selectedData);
     const dispatch = useDispatch();
     const fiveDaysWeather = useSelector(state => state.fiveDaysWeatherData.fiveDaysWeather.DailyForecasts);
-    console.log("🚀 ~ file: FiveDaysWeather.jsx ~ line 12 ~ FiveDaysWeather ~ fiveDaysWeather", fiveDaysWeather);
 
     useEffect(() => {
         dispatch(allActions.getFiveDaysWeatherData(weatherData.id));
