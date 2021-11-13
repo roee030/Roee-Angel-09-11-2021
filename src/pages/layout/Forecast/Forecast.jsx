@@ -1,38 +1,43 @@
 import Button from 'pages/common/button/Button';
-import React from 'react';
-import DayForcast from './DayForcast';
+import React, { useEffect, useState } from 'react';
 import styles from './Forecast.module.scss';
 import clsx from 'clsx';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import allActions from 'redux/actions';
+import FiveDaysWeather from './FiveDaysWeather';
 
-//https://bas.dev/projects/weather-icons
+const iconURL = 'https://developer.accuweather.com/sites/default/files/';
+
 const Forecast = () => {
+    const dispatch = useDispatch();
     const themeMode = useSelector(state => state.theme);
+    const degreeUnits = useSelector(state => state.degree);
+    const weatherData = useSelector(state => state.weatherData.selectedData);
+    const weatherDataPending = useSelector(state => state.weatherData.pending);
+    const weatherDataError = useSelector(state => state.weatherData.error);
 
     return (
-        <div className={clsx({
-            [styles.lightMode]: themeMode,
-            [styles.darkMode]: !themeMode,
-        }, styles.root)}>
-            <div className={styles.mainForcastRoot}>
-                <div className={styles.mainForcast}>
-                    <img className={styles.forcastIcon} src={'https://bmcdn.nl/assets/weather-icons/v2.1/fill/clear-day.svg'} alt={''} />
-                    <div className={styles.todayForcast}>
-                        <div className={styles.location}>Tel Aviv</div>
-                        <div className={styles.todayForcast}>38</div>
+        Object.keys(weatherData).length ?
+            <div className={clsx({
+                [styles.lightMode]: themeMode,
+                [styles.darkMode]: !themeMode,
+            }, styles.root)}>
+                <div className={styles.mainForcastRoot}>
+                    <div className={styles.mainForcast}>
+                        <img className={styles.forcastIcon} src={`${iconURL}${weatherData.WeatherIcon}-s.png`} alt={''} />
+                        <div className={styles.todayForcast}>
+                            <div className={styles.location}>{weatherData.LocationName}</div>
+                            <div className={styles.todayForcast}>{degreeUnits
+                                ? weatherData.Temperature?.Imperial.Value + "°" + weatherData.Temperature?.Imperial.Unit
+                                : weatherData.Temperature.Metric.Value + "°" + weatherData.Temperature.Metric.Unit}</div>
+                        </div>
                     </div>
+                    <Button className={styles.favorite}>Add to favorite ❤</Button>
                 </div>
-                <Button className={styles.favorite}>Add to favorite ❤</Button>
+                <div className={styles.forcast}>{weatherData.WeatherText}</div>
+                <FiveDaysWeather />
             </div>
-            <div className={styles.forcast}>Mostly cloudy</div>
-            <div className={styles.dayForcastRoot}>
-                <DayForcast />
-                <DayForcast />
-                <DayForcast />
-                <DayForcast />
-                <DayForcast />
-            </div>
-        </div>
+            : null
     );
 };
 

@@ -1,0 +1,19 @@
+@import "scss/theme";
+
+.root {
+    display: flex;
+    flex: 0 0 18%;
+    justify-content: center;
+    align-items: center;
+
+    @include sizes-mobile {
+        flex-direction: column;
+    }
+    @include sizes-tablet {
+        flex-direction: row;
+    }
+
+    @include sizes-desktop {
+        flex-direction: row;
+    }
+}
