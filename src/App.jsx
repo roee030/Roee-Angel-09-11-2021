@@ -11,9 +11,16 @@ import allActions from 'redux/actions';
 
 
 function App() {
-  const themeMode = useSelector(state => state.theme.theme);
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    const myFavoriteList = localStorage.getItem('favoriteList');
+    if (!myFavoriteList) {
+      localStorage.setItem('favoriteList', []);
+    }
+    dispatch(allActions.updateFavoriteWeatherLocations(myFavoriteList || []));
+  }, [dispatch]);
   return (
     <SnackbarProvider maxSnack={1} anchorOrigin={{ horizontal: 'center', vertical: 'top' }}>
       {
