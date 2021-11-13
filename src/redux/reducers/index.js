@@ -4,7 +4,8 @@ import {
     searchResults,
     weatherData,
     fiveDaysWeatherData,
-    favoriteLocations
+    favoriteLocations,
+    myWeatherData
 } from './weather';
 import { combineReducers } from 'redux';
 
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     searchResults,
     weatherData,
     fiveDaysWeatherData,
-    favoriteLocations
+    favoriteLocations,
+    myWeatherData
 });
 
 export default rootReducer;

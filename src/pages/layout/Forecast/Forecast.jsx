@@ -1,5 +1,5 @@
 import Button from 'pages/common/button/Button';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Forecast.module.scss';
 import clsx from 'clsx';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,7 +8,6 @@ import FiveDaysWeather from './FiveDaysWeather';
 import WeatherIcon from 'pages/common/weatherIcon/WeatherIcon';
 import useAlerts from 'utils/hooks/useAlerts';
 import { ReactComponent as Loading } from 'assets/icons/LoadingAnimated.svg';
-
 
 const Forecast = () => {
     const dispatch = useDispatch();
@@ -19,7 +18,26 @@ const Forecast = () => {
     const myFavoriteList = useSelector(state => state.favoriteLocations.ObjectsList);
     const weatherDataPending = useSelector(state => state.weatherData.pending);
     const weatherDataError = useSelector(state => state.weatherData.error);
+    const myWeatherData = useSelector(state => state.myWeatherData.data);
     const isFavorite = myFavoriteList?.some(location => location.id === weatherData.id);
+    const [shouldRerender, setShouldRerender] = useState(false);
+    console.log("🚀 ~ file: Forecast.jsx ~ line 18 ~ Forecast ~ weatherData", weatherData);
+    useEffect(() => {
+        if (navigator.geolocation) {
+            (navigator.geolocation.getCurrentPosition((object) => {
+                dispatch(allActions.getMyWeatherData(object.coords.latitude, object.coords.longitude));
+                setShouldRerender(true);
+            },
+                () => generalError('Cannot get you Location, please search your city ')));
+        }
+    }, []);
+
+    useEffect(() => {
+        if (Object.keys(myWeatherData).length && shouldRerender) {
+            // console.log({ id: myWeatherData.Key, name: myWeatherData.LocalizedName });
+            dispatch(allActions.getWeatherData({ id: myWeatherData.Key, name: myWeatherData.LocalizedName }));
+        }
+    }, [myWeatherData, shouldRerender]);
 
     if (weatherDataError) {
         generalError(weatherDataError?.request?.statusText);

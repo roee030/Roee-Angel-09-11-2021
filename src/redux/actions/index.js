@@ -4,7 +4,8 @@ import {
     autoCompleteDataSearch,
     getWeatherData,
     getFiveDaysWeatherData,
-    updateFavoriteWeatherLocations
+    updateFavoriteWeatherLocations,
+    getMyWeatherData
 } from './weatherActions';
 
 const allActions = {
@@ -13,7 +14,8 @@ const allActions = {
     autoCompleteDataSearch,
     getWeatherData,
     getFiveDaysWeatherData,
-    updateFavoriteWeatherLocations
+    updateFavoriteWeatherLocations,
+    getMyWeatherData,
 };
 
 export default allActions;
