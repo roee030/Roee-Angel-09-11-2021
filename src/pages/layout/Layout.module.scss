@@ -1,17 +1,6 @@
 @import "scss/theme";
 .root {
-    @include sizes-mobile {
-        height: 100%;
-    }
-
-    @include sizes-tablet {
-        height: 100vh;
-    }
-
-    @include sizes-desktop {
-        height: 100vh;
-    }
-
+    height: 100vh;
     font-family: "Montserrat";
 }
 .lightMode {
