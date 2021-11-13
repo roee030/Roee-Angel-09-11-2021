@@ -49,12 +49,11 @@ export const fiveDaysWeatherData = (state = { fiveDaysWeather: [] }, action) => 
     }
 };
 
-export const favoriteLocations = (state = { idList: [] }, action) => {
-    console.log(action.payload);
+export const favoriteLocations = (state = { ObjectsList: [] }, action) => {
     switch (action.type) {
         case UPDATE_FAVORITE_LOCATION:
-            localStorage.setItem('favoriteList', action.payload);
-            return { ...state, idList: action.payload };
+            localStorage.setItem('favoriteList', JSON.stringify(action.payload));
+            return { ...state, ObjectsList: action.payload };
         default:
             return state;
     }

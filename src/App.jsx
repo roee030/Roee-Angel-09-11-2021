@@ -15,7 +15,8 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const myFavoriteList = localStorage.getItem('favoriteList');
+    let myFavoriteList = localStorage.getItem('favoriteList');
+    myFavoriteList = JSON.parse(myFavoriteList);
     if (!myFavoriteList) {
       localStorage.setItem('favoriteList', []);
     }

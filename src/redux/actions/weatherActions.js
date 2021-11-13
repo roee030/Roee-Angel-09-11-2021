@@ -72,7 +72,7 @@ export const getFiveDaysWeatherData = (id) => async (dispatch) => {
 };
 
 export const updateFavoriteWeatherLocations = (newList) => {
-    console.log("🚀 ~ file: weatherActions.js ~ line 75 ~ updateFavoriteWeatherLocations ~ newList", newList);
+    console.log("🚀 ~ newList", newList);
     return {
         type: UPDATE_FAVORITE_LOCATION,
         payload: newList

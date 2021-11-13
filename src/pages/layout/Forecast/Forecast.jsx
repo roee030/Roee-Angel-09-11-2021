@@ -16,10 +16,11 @@ const Forecast = () => {
     const themeMode = useSelector(state => state.theme);
     const degreeUnits = useSelector(state => state.degree);
     const weatherData = useSelector(state => state.weatherData.selectedData);
-    const myFavoriteList = useSelector(state => state.favoriteLocations.idList);
+    const myFavoriteList = useSelector(state => state.favoriteLocations.ObjectsList);
+    console.log("🚀 ~ file: Forecast.jsx ~ line 21 ~ Forecast ~ myFavoriteList", myFavoriteList);
     const weatherDataPending = useSelector(state => state.weatherData.pending);
     const weatherDataError = useSelector(state => state.weatherData.error);
-    const isFavorite = myFavoriteList.some(locationId => locationId === weatherData.id);
+    const isFavorite = myFavoriteList?.some(location => location.id === weatherData.id);
 
     if (weatherDataError) {
         generalError(weatherDataError.request.statusText);
@@ -47,11 +48,14 @@ const Forecast = () => {
                     <Button className={styles.favorite}
                         onClick={
                             isFavorite
-                                ? () => dispatch(allActions.updateFavoriteWeatherLocations(myFavoriteList.filter(id => id !== weatherData.id)))
-                                : () => dispatch(allActions.updateFavoriteWeatherLocations([...myFavoriteList, weatherData.id]))
+                                ? () => dispatch(allActions.updateFavoriteWeatherLocations(myFavoriteList.filter(locationObject => locationObject.id !== weatherData.id)))
+                                : () => dispatch(allActions.updateFavoriteWeatherLocations([...myFavoriteList, { id: weatherData.id, LocationName: weatherData.LocationName }]))
                         }
                     >
-                        {isFavorite ? "Remove from Favorite ❤" : "Add to favorite ❤"}
+                        {isFavorite
+                            ? "Remove from Favorite ❤"
+                            : "Add to favorite ❤"
+                        }
 
                     </Button>
                 </div>
