@@ -7,7 +7,6 @@ import convertFarenheitTocelsius from 'utils/converters/convertFahrenheitToCelsi
 import { useSelector } from 'react-redux';
 
 const DayForecast = ({ forecast }) => {
-    console.log("🚀 ~ file: DayForecast.jsx ~ line 10 ~ DayForecast ~ forecast", forecast);
     const themeMode = useSelector(state => state.theme);
     const degreeUnits = useSelector(state => state.degree);
 
