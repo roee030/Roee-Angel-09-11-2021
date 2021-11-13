@@ -53,6 +53,7 @@ export const favoriteLocations = (state = { idList: [] }, action) => {
     console.log(action.payload);
     switch (action.type) {
         case UPDATE_FAVORITE_LOCATION:
+            localStorage.setItem('favoriteList', action.payload);
             return { ...state, idList: action.payload };
         default:
             return state;

@@ -6,20 +6,28 @@ import { useSelector, useDispatch } from 'react-redux';
 import allActions from 'redux/actions';
 import FiveDaysWeather from './FiveDaysWeather';
 import WeatherIcon from 'pages/common/weatherIcon/WeatherIcon';
+import useAlerts from 'utils/hooks/useAlerts';
+import { ReactComponent as Loading } from 'assets/icons/LoadingAnimated.svg';
 
-const iconURL = 'https://developer.accuweather.com/sites/default/files/';
 
 const Forecast = () => {
     const dispatch = useDispatch();
+    const { generalError } = useAlerts();
     const themeMode = useSelector(state => state.theme);
     const degreeUnits = useSelector(state => state.degree);
     const weatherData = useSelector(state => state.weatherData.selectedData);
     const myFavoriteList = useSelector(state => state.favoriteLocations.idList);
-    console.log("🚀 ~ file: Forecast.jsx ~ line 18 ~ Forecast ~ myFavoriteList", myFavoriteList);
     const weatherDataPending = useSelector(state => state.weatherData.pending);
     const weatherDataError = useSelector(state => state.weatherData.error);
     const isFavorite = myFavoriteList.some(locationId => locationId === weatherData.id);
 
+    if (weatherDataError) {
+        generalError(weatherDataError.request.statusText);
+        return null;
+    }
+    if (weatherDataPending) {
+        return <Loading style={{ background: "transparnt", margin: "auto", display: "block", shapeRendering: "auto" }} />;
+    }
     return (
         Object.keys(weatherData).length ?
             <div className={clsx({
