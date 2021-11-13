@@ -31,7 +31,7 @@ const Input = () => {
 
     useEffect(() => {
         if (error) {
-            generalError(error?.request?.statusText);
+            generalError(error?.request?.statusText || error);
         }
     }, [error, generalError]);
 
