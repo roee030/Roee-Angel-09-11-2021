@@ -3,7 +3,6 @@ import Input from 'pages/common/input/Input';
 import styles from './HomePage.module.scss';
 import Forecast from 'pages/layout/Forecast/Forecast';
 
-//yxmfmsuqdnzqkpoovx@sdvft.com 207186449
 const HomePage = () => {
 
     return (

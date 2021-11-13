@@ -1,7 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import allActions from 'redux/actions';
-import clsx from 'clsx';
+import { useSelector } from 'react-redux';
 import styles from './FavoritePage.module.scss';
 import FavoriteItem from './FavoriteItem';
 
@@ -10,7 +8,7 @@ const FavoritePage = () => {
 
     return (
         <div className={styles.root}>
-            {myFavoriteLocations.map(location => <FavoriteItem location={location} />)}
+            {myFavoriteLocations.map(location => <FavoriteItem key={location.id} location={location} />)}
         </div>
     );
 };

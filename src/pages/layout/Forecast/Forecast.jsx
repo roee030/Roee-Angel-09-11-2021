@@ -1,5 +1,5 @@
 import Button from 'pages/common/button/Button';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './Forecast.module.scss';
 import clsx from 'clsx';
 import { useSelector, useDispatch } from 'react-redux';
@@ -22,7 +22,7 @@ const Forecast = () => {
     const isFavorite = myFavoriteList?.some(location => location.id === weatherData.id);
 
     if (weatherDataError) {
-        generalError(weatherDataError.request.statusText);
+        generalError(weatherDataError?.request?.statusText);
         return null;
     }
     if (weatherDataPending) {
@@ -44,7 +44,8 @@ const Forecast = () => {
                                 : weatherData.Temperature.Metric.Value + " °" + weatherData.Temperature.Metric.Unit}</div>
                         </div>
                     </div>
-                    <Button className={styles.favorite}
+                    <Button
+                        className={styles.favorite}
                         onClick={
                             isFavorite
                                 ? () => dispatch(allActions.updateFavoriteWeatherLocations(myFavoriteList.filter(locationObject => locationObject.id !== weatherData.id)))
@@ -57,8 +58,8 @@ const Forecast = () => {
                         }
                     >
                         {isFavorite
-                            ? "Remove from Favorite ❤"
-                            : "Add to favorite ❤"
+                            ? "Remove ❤"
+                            : "Add ❤"
                         }
 
                     </Button>

@@ -6,12 +6,12 @@ import HomePage from './pages/home/HomePage';
 import FavoritePage from './pages/favorite/FavoritePage';
 import { Route, Switch } from 'react-router';
 import Layout from './pages/layout/Layout';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import allActions from 'redux/actions';
 
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading,] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {

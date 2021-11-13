@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PageHeader from './page-header/PageHeader';
 import styles from './Layout.module.scss';
 import { useSelector } from 'react-redux';

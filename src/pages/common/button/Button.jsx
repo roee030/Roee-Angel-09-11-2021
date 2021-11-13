@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 
-const Button = ({ children, onClick, className: classNameFromParent }) => {
+const Button = ({ children, onClick, }) => {
     const themeMode = useSelector(state => state.theme);
 
     return (

@@ -40,7 +40,7 @@ export const getWeatherData = (location) => async (dispatch) => {
     dispatch({ type: FETCH_DATA_PENDING });
     try {
         await getCurrentCondition(location.id).then(data => {
-            const formattedData = { ...data.data[0], LocationName: location.name, id: location.id };
+            const formattedData = { ...data.data[0], LocationName: location.name || location.LocationName, id: location.id };
             dispatch({
                 type: FETCH_DATA_SUCCESS,
                 payload: formattedData,
