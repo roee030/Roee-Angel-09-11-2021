@@ -24,7 +24,7 @@ const Forecast = () => {
     const loadedRef = useRef();
 
     useEffect(() => {
-        if (navigator.geolocation && !Object.keys(myWeatherData).length) {
+        if (navigator.geolocation && !Object.keys(myWeatherData).length && !weatherDataError && !myWeatherDataError) {
             (navigator.geolocation.getCurrentPosition((object) => {
                 dispatch(allActions.getMyWeatherData(object.coords.latitude, object.coords.longitude));
                 loadedRef.current = true;
@@ -37,7 +37,7 @@ const Forecast = () => {
                 }
             ));
         }
-    }, [dispatch, generalError, myWeatherData, weatherData]);
+    }, [dispatch, generalError, myWeatherData, myWeatherDataError, weatherData, weatherDataError]);
 
     useEffect(() => {
         if (Object.keys(myWeatherData).length && loadedRef.current) {
@@ -46,14 +46,20 @@ const Forecast = () => {
         }
     }, [dispatch, myWeatherData]);
 
-    if (weatherDataError) {
-        generalError(weatherDataError?.request?.statusText);
-        return null;
-    }
-    if (myWeatherDataError) {
-        generalError(myWeatherDataError.request.statusText);
-        return null;
-    }
+    useEffect(() => {
+        if (weatherDataError) {
+            generalError(weatherDataError?.request?.statusText);
+            return null;
+        }
+    });
+
+    useEffect(() => {
+        if (myWeatherDataError) {
+            generalError(myWeatherDataError.request.statusText);
+            return null;
+        }
+    });
+
     if (weatherDataPending) {
         return <Loading style={{ background: "transparnt", margin: "auto", display: "block", shapeRendering: "auto" }} />;
     }
