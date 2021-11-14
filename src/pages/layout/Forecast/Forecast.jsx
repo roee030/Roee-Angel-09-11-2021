@@ -1,5 +1,5 @@
 import Button from 'pages/common/button/Button';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './Forecast.module.scss';
 import clsx from 'clsx';
 import { useSelector, useDispatch } from 'react-redux';
@@ -19,26 +19,39 @@ const Forecast = () => {
     const weatherDataPending = useSelector(state => state.weatherData.pending);
     const weatherDataError = useSelector(state => state.weatherData.error);
     const myWeatherData = useSelector(state => state.myWeatherData.data);
+    const myWeatherDataError = useSelector(state => state.myWeatherData.error);
     const isFavorite = myFavoriteList?.some(location => location.id === weatherData.id);
-    const [shouldRerender, setShouldRerender] = useState(false);
-    useEffect(() => {
-        if (navigator.geolocation) {
-            (navigator.geolocation.getCurrentPosition((object) => {
-                dispatch(allActions.getMyWeatherData(object.coords.latitude, object.coords.longitude));
-                setShouldRerender(true);
-            },
-                () => generalError('Cannot get you Location, please search your city ')));
-        }
-    }, []);
+    const loadedRef = useRef();
 
     useEffect(() => {
-        if (Object.keys(myWeatherData).length && shouldRerender) {
-            dispatch(allActions.getWeatherData({ id: myWeatherData.Key, name: myWeatherData.LocalizedName }));
+        if (navigator.geolocation && !Object.keys(myWeatherData).length) {
+            (navigator.geolocation.getCurrentPosition((object) => {
+                dispatch(allActions.getMyWeatherData(object.coords.latitude, object.coords.longitude));
+                loadedRef.current = true;
+            },
+                () => {
+                    if (Object.keys(myWeatherData).length || Object.keys(weatherData).length) {
+                        return;
+                    }
+                    else generalError('Cannot get you Location, please search your city ');
+                }
+            ));
         }
-    }, [myWeatherData, shouldRerender]);
+    }, [dispatch, generalError, myWeatherData, weatherData]);
+
+    useEffect(() => {
+        if (Object.keys(myWeatherData).length && loadedRef.current) {
+            dispatch(allActions.getWeatherData({ id: myWeatherData.Key, name: myWeatherData.LocalizedName }));
+            loadedRef.current = false;
+        }
+    }, [dispatch, myWeatherData]);
 
     if (weatherDataError) {
         generalError(weatherDataError?.request?.statusText);
+        return null;
+    }
+    if (myWeatherDataError) {
+        generalError(myWeatherDataError.request.statusText);
         return null;
     }
     if (weatherDataPending) {
